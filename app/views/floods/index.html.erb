@@ -1,0 +1,27 @@
+<h1>Listing floods</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @floods.each do |flood| %>
+      <tr>
+        <td><%= flood.name %></td>
+        <td><%= link_to 'Show', flood %></td>
+        <td><%= link_to 'Edit', edit_flood_path(flood) %></td>
+        <td><%= link_to 'Destroy', flood, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Flood', new_flood_path %>

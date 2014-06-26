@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pool.name %>
+</p>
+
+<p>
+  <strong>Auth token:</strong>
+  <%= @pool.auth_token %>
+</p>
+
+<p>
+  <strong>Flood:</strong>
+  <%= @pool.flood_id %>
+</p>
+
+<%= link_to 'Edit', edit_pool_path(@pool) %> |
+<%= link_to 'Back', pools_path %>
