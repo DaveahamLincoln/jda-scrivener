@@ -17,7 +17,7 @@ FloodInvoker is called by FloodJob (/schedule.yml), which runs 30s after startup
       #Iterates over all Pools belonging to Flood f (foreign key flood_id = f.id), aliasing them to p.
       Pool.where(flood_id: f.id).find_each do |p|    
         #Enqueues a PollDaemon job and passes the id of the pool to the job.
-        Resque.enqueue(PollDaemon, p.id)
+        Resque.enqueue(PollDaemon, p.id, f.bind)
         puts p.name + " flooded."
       end
     end

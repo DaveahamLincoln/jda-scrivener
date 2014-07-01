@@ -1,21 +1,23 @@
 class PollDaemon
 =begin
 
-PoolDaemons are spawned by the FloodDaemon process, triggered by the FloodJob (30s after app start, 5m schedule), which runs 10m after startup and every 5m afterwards.  PoolDaemon creates an IMAP connection with the Pool indicated by the id argument and scrapes the content of the Pool, loading it into the database.
-
-Future scaling note:  to add support for multiple database tables (based on parent Flood), add a target:string field to the Flood table, and pass the parent Flood id to the perform action, then change the load logic to retrieve the Class indicated by the name in the target field (I believe you'd use a .serialize method).
+PoolDaemons are spawned by the FloodDaemon process, triggered by the FloodInvoker (30s after app start, 5m schedule).  PoolDaemon creates an IMAP connection with the Pool indicated by the id argument and scrapes the contents of the Pool, loading it into the database.
 
 =end
   
   @queue = :polling
   
-  def self.perform(idee)
+  #apparently this job doesn't like having id passed to it.  Hence, idee.
+  #f_bind is the bind string from the parent flood
+  def self.perform(idee, f_bind)
     #Imports the gmail IMAP socket.
     require 'gmail'
     #Finds the pool associated with the pool id passed by the FloodDaemon
     @pool = Pool.find(idee)
     #Creates the IMAP tunnel between Scrivener and the pool
     @link = Gmail.new(@pool.name, @pool.auth_token)
+    #Extracts the class of the target table from the f_bind string.
+    bound_table = f_bind.constantize
     #Initializes a count to keep track of the number of alerts found.
     count = 0
     puts("Polling on " + @pool.name + " started.")
@@ -25,8 +27,8 @@ Future scaling note:  to add support for multiple database tables (based on pare
       fr = unf.from[0].to_s.split("@")[0]
       #Assigns the subject header to su
       su = unf.subject
-      #Creates a new Alert object with the parsed attributes.
-      new_alert = Alert.new(from: fr, subject: su)
+      #Creates a new record in the bound table with the parsed attributes.
+      new_alert = bound_table.new(from: fr, subject: su)
       #Saves the Alert object to the database (commit)
       new_alert.save!
       #Increments the counter.

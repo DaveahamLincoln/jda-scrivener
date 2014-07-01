@@ -11,4 +11,4 @@ ClearJob:
     - "60m"
   class: "ClearInvoker"
   queue: invoking
-  description: "Loads each flood's pool list and spins jobs for them on the polling queue."
+  description: "Loads each flood's pool list and spins jobs for them on the clearing queue."
