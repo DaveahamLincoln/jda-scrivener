@@ -1,7 +1,12 @@
 Scrivener::Application.routes.draw do
   resources :pools
 
-  resources :floods
+  resources :floods do
+    member do
+      post 'source'
+    end
+  end
+
 
   resources :alerts
   

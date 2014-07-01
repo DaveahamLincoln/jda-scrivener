@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140625191127) do
+ActiveRecord::Schema.define(version: 20140630215000) do
 
   create_table "alerts", force: true do |t|
     t.string   "from"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20140625191127) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "bind"
   end
 
   create_table "gmail_connections", force: true do |t|
@@ -35,6 +36,13 @@ ActiveRecord::Schema.define(version: 20140625191127) do
     t.string   "name"
     t.string   "auth_token"
     t.integer  "flood_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sources", force: true do |t|
+    t.string   "name"
+    t.integer  "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

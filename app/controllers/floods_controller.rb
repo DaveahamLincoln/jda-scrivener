@@ -60,6 +60,11 @@ class FloodsController < ApplicationController
       format.json { head :no_content }
     end
   end
+  
+  def source
+    Resque.enqueue(SourceOd, params[:id])
+  end
+    
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -69,6 +74,6 @@ class FloodsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flood_params
-      params.require(:flood).permit(:name)
+      params.require(:flood).permit(:name,:bind)
     end
 end

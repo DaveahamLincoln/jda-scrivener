@@ -8,6 +8,6 @@ Resque.configure do |config|
   #   Redis::Distributed - a distributed redis connection that will be used as-is
   #   Hash - a redis connection hash (e.g. {:host => 'localhost', :port => 6379, :db => 0})
   config.redis = 'localhost:6379:alpha/high'
-  config.queues = 'invoking,queuing,clearing'
+  config.queues = 'invoking,queuing,clearing,od'
 
 end

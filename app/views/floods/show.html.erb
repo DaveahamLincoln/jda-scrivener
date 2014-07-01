@@ -5,5 +5,11 @@
   <%= @flood.name %>
 </p>
 
+<p>
+  <strong>Bind:</strong>
+  <%= @flood.bind.constantize %>
+</p>
+
+<%= link_to "Populate Sources", source_flood_path(@flood), method: :post%> |
 <%= link_to 'Edit', edit_flood_path(@flood) %> |
 <%= link_to 'Back', floods_path %>
