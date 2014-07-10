@@ -1,17 +1,4 @@
-<h1>Flood: <%= @flood.name %></h1>
-
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Bound to:</strong>
-  <%= @flood.bind.constantize %>
-</p>
-
-<h2>Sources:</h2>
-
-<p>
-  <%= link_to "Populate Sources", source_flood_path(@flood), method: :post%>
-</p>
+<h1>Listing sources</h1>
 
 <table border="2">
   <thead>
@@ -32,6 +19,7 @@
         <td><%= Flood.find(source.flood_id).name %></td>
         <td><%= link_to 'Show', source %></td>
         <td><%= link_to 'Edit', edit_source_path(source) %></td>
+        <td><%= link_to 'Destroy', source, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -39,6 +27,3 @@
 
 <br>
 
-
-<%= link_to 'Edit', edit_flood_path(@flood) %> |
-<%= link_to 'Back', floods_path %>

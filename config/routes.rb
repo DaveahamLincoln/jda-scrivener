@@ -1,4 +1,6 @@
 Scrivener::Application.routes.draw do
+  resources :sources
+
   resources :pools
 
   resources :floods do

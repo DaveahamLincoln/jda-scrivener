@@ -10,6 +10,7 @@ class FloodsController < ApplicationController
   # GET /floods/1
   # GET /floods/1.json
   def show
+    @sources = @flood.sources.all
   end
 
   # GET /floods/new

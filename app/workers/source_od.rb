@@ -31,12 +31,12 @@ SourceOd is an on-demand job which scans the 'from' fields of all records belong
         #Increments the counter.
         count += 1
         #Creates a new Source record
-        source = Source.new(name: rec.from)
+        source = Source.new(name: rec.from, flood_id: flood_id)
         #Saves the record.
         source.save!
       end
     end
-    puts count.to_s + " sources added."
+    puts count.to_s + " sources added to " + flood.name + "."
     #Releases the lock on the database to force garbage collection.
     ActiveRecord::Base.connection.close
   end
