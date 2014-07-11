@@ -6,13 +6,8 @@
 </p>
 
 <p>
-  <strong>Auth token:</strong>
-  <%= @pool.auth_token %>
-</p>
-
-<p>
   <strong>Flood:</strong>
-  <%= @pool.flood_id %>
+  <%= Flood.find(@pool.flood_id).name %>
 </p>
 
 <%= link_to 'Edit', edit_pool_path(@pool) %> |

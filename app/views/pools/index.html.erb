@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Auth token</th>
       <th>Flood</th>
       <th></th>
       <th></th>
@@ -16,8 +15,7 @@
     <% @pools.each do |pool| %>
       <tr>
         <td><%= pool.name %></td>
-        <td><%= pool.auth_token %></td>
-        <td><%= pool.flood_id %></td>
+        <td><%= Flood.find(pool.flood_id).name %></td>
         <td><%= link_to 'Show', pool %></td>
         <td><%= link_to 'Edit', edit_pool_path(pool) %></td>
         <td><%= link_to 'Destroy', pool, method: :delete, data: { confirm: 'Are you sure?' } %></td>
