@@ -1,7 +1,6 @@
 FloodJob:
   every: 
     - "5m"
-    - :first_in: "30s"
   class: "FloodInvoker"
   queue: invoking
   description: "Loads each flood's pool list and spins jobs for them on the polling queue."

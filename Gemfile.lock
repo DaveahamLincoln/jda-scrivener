@@ -93,6 +93,10 @@ GEM
       ice_cube (= 0.6.8)
       trollop
     redis (3.1.0)
+    redis-classy (1.2.0)
+      redis-namespace (~> 1.0)
+    redis-mutex (3.0.0)
+      redis-classy (~> 1.2)
     redis-namespace (1.5.0)
       redis (~> 3.0, >= 3.0.4)
     ref (1.0.5)
@@ -105,6 +109,9 @@ GEM
       redis (>= 3.0.0)
       resque (>= 1.20.0, < 1.25)
       rufus-scheduler (~> 2.0)
+    resque_stuck_queue (0.5.1)
+      redis-mutex
+      redis-namespace
     ruby-gmail (0.3.1)
       mail (>= 2.2.1)
       mime (>= 0.1)
@@ -169,6 +176,7 @@ DEPENDENCIES
   recurrent
   resque
   resque-scheduler
+  resque_stuck_queue
   ruby-gmail
   sass-rails (~> 4.0.2)
   sdoc

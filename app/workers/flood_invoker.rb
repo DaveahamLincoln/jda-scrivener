@@ -9,16 +9,26 @@ FloodInvoker is called by FloodJob (/schedule.yml), which runs 30s after startup
   @queue = :invoking
   
   #Jobs must have a self.perform method (at minimum), which is called when the job is picked up by a 
-  #worker
+  #  worker
   def self.perform
+    require 'gmail'
     puts "Flooding pools."
     #Iterates over Floods.  Each Flood is aliased to f in turn.
     Flood.all.each do |f|
       #Iterates over all Pools belonging to Flood f (foreign key flood_id = f.id), aliasing them to p.
       Pool.where(flood_id: f.id).find_each do |p|    
-        #Enqueues a PollDaemon job and passes the id of the pool to the job.
-        Resque.enqueue(PollDaemon, p.id, f.bind)
-        puts p.name + " flooded."
+	#Checks the number of unread emails in the pool.
+	Gmail.new(p.name, p.auth_token) do |g|
+	  job_count = ((g.inbox.count(:unread))/300).floor
+	  puts "Spinning " + job_count.to_s + " jobs."
+
+	  #Spins 1 job/300 emails
+	  job_count.times do 
+	    #Enqueues a PollDaemon job and passes the id of the pool to the job.
+            Resque.enqueue(PollDaemon, p.id, f.bind)
+	  end
+          puts p.name + " flooded."
+	end
       end
     end
     #Releases the lock on the database to force garbage collection.

@@ -64,3 +64,6 @@ gem 'resque-scheduler'
 
 #Handles startup
 gem 'foreman'
+
+#Fagan-esque process for killing stuck jobs so that errors like 18ee61f don't happen ever again.
+gem 'resque_stuck_queue'

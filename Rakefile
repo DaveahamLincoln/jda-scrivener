@@ -3,3 +3,4 @@
 require File.expand_path('../config/application', __FILE__)
 
 Scrivener::Application.load_tasks
+

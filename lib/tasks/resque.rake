@@ -30,4 +30,11 @@ namespace :resque do
     # project, it's usually easier to just include you job classes here.
     # So, something like this:
   end
+
+  # :environment dep task should load the config via the initializer
+  task :stuck_queue => :environment do
+    Resque::StuckQueue.start
+  end
+
 end
+
