@@ -64,3 +64,6 @@ gem 'resque-scheduler'
 
 #Handles startup
 gem 'foreman'
+
+#Graphing
+gem 'chartkick'

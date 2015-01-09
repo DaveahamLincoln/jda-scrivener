@@ -10,6 +10,7 @@ class SourcesController < ApplicationController
   # GET /sources/1
   # GET /sources/1.json
   def show
+    @alert_count = Alert.where(from: Source.find(params[:id]).name).count
   end
 
   # GET /sources/new

@@ -1,4 +1,43 @@
 <h1>Listing alerts</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+ 
+<center><h2>Alerts by Customer</h2></center> 
+
+<%= pie_chart({"Dunkin" => @dunkin, "Boston Market" => @boston, "Chevron" => @chevron, "NTR" => @ntr,
+  "Five Guys" => @fg, "Firehouse" => @fhs, "BTE" => @bte, "Cara" => @cara, "Sheetz" => @sheetz,
+  "Speedway" => @speed, "CStore" => @cstore, "Church's" => @churchs, "Ocharley's" => @oc, "RDS" => @rds,
+  "Popeyes" => @pop, "McDonalds" => @mcd
+}, height: "500px" ) %>
+
+<center><h2>Alerts by Source</h2></center> 
+<%= pie_chart(Alert.group(:source).count, height: "500px") %>
+
+<center><h2>Number of Alerts by Customer</h2></center> 
+<%= bar_chart({"Dunkin" => @dunkin, "Boston Market" => @boston, "Chevron" => @chevron, "NTR" => @ntr,
+  "Five Guys" => @fg, "Firehouse" => @fhs, "BTE" => @bte, "Cara" => @cara, "Sheetz" => @sheetz,
+  "Speedway" => @speed, "CStore" => @cstore, "Church's" => @churchs, "Ocharley's" => @oc, "RDS" => @rds,
+  "Popeyes" => @pop, "McDonalds" => @mcd
+}, height: "500px" ) %>
+
+<!--
+Dunkin: <%=@dunkin%><br/>
+Boston Market: <%=@boston%><br/>
+Chevron: <%=@chevron%><br/>
+NTR: <%=@ntr%><br/>
+Five Guys: <%=@fg%><br/>
+Firehouse: <%=@fhs%><br/>
+BTE: <%=@bte%><br/>
+Cara: <%=@cara%><br/>
+Sheetz: <%=@sheetz%><br/>
+Speedway: <%=@speed%><br/>
+CStore: <%=@cstore%><br />
+Church's: <%=@churchs%><br />
+OCharley's: <%=@oc%><br />
+RDS: <%=@rds%><br />
+Popeyes: <%=@pop%><br />
+McDonalds: <%=@mcd%><br /><br />
+-->
+
 
 <table>
   <thead>
@@ -16,8 +55,9 @@
     <% @alerts.each do |alert| %>
       <tr>
         <td><%= alert.id%></td>
-        <td><%= alert.from %></td>
+        <td><%= alert.source %></td>
         <td><%= alert.subject %></td>
+        <td><%= alert.received %></td>
         <td><%= link_to 'Show', alert %></td>
       </tr>
     <% end %>

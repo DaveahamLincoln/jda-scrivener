@@ -5,6 +5,22 @@ class AlertsController < ApplicationController
   # GET /alerts.json
   def index
     @alerts = Alert.all
+    @dunkin = Alert.where('subject LIKE ?', '%adqsr%').count
+    @boston = Alert.where('subject LIKE ?', '%boston%').count
+    @chevron = Alert.where('subject LIKE ?', '%chevron%').count
+    @ntr = Alert.where('subject LIKE ?', '%ntr%').count
+    @fg = Alert.where('subject LIKE ?', '%five%').count
+    @fhs = Alert.where('subject LIKE ?', '%fire%').count
+    @bte = Alert.where('subject LIKE ?', '%bte%').count
+    @cara = Alert.where('subject LIKE ?', '%cara%').count
+    @sheetz = Alert.where('subject LIKE ?', '%sheetz%').count
+    @speed = Alert.where('subject LIKE ?', '%ssa%').count + Alert.where('subject LIKE ?', '%speed%').count
+    @cstore = Alert.where('subject LIKE ?', '%cstore%').count
+    @churchs = Alert.where('subject LIKE ?', '%church%').count + Alert.where('subject LIKE ?', '%afce%').count
+    @oc = Alert.where('subject LIKE ?', '%charl%').count
+    @rds = Alert.where('subject LIKE ?', '%rds%').count
+    @pop = Alert.where('subject LIKE ?', '%popeye%').count
+    @mcd = Alert.where('subject LIKE ?', '%mcd%').count
   end
 
   # GET /alerts/1

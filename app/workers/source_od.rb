@@ -27,11 +27,11 @@ SourceOd is an on-demand job which scans the 'from' fields of all records belong
     #i.e. if Alerts is the bound table, bound_table.all.each == Alert.all.each 
     bound_table.all.each do |rec|
       #Checks to see if it is not the case that a Source with the name of rec.from exists
-      if !Source.where(name: rec.from).exists?
+      if !Source.where(name: rec.source).exists?
         #Increments the counter.
         count += 1
         #Creates a new Source record
-        source = Source.new(name: rec.from, flood_id: flood_id)
+        source = Source.new(name: rec.source, flood_id: flood_id)
         #Saves the record.
         source.save!
       end

@@ -27,8 +27,10 @@ PoolDaemons are spawned by the FloodDaemon process, triggered by the FloodInvoke
       fr = unf.from[0].to_s.split("@")[0]
       #Assigns the subject header to su
       su = unf.subject
+      #pulls date and assigns it to rec
+      rec = unf.date #.to_s
       #Creates a new record in the bound table with the parsed attributes.
-      new_alert = bound_table.new(from: fr, subject: su)
+      new_alert = bound_table.new(source: fr, subject: su, received: rec, pool_id: @pool.id)
       #Saves the Alert object to the database (commit)
       new_alert.save!
       #Increments the counter.
