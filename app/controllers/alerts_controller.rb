@@ -4,7 +4,7 @@ class AlertsController < ApplicationController
   # GET /alerts
   # GET /alerts.json
   def index
-    @alerts = Alert.all
+    @alerts = Alert.limit(25)
     @dunkin = Alert.where('subject LIKE ?', '%adqsr%').count
     @boston = Alert.where('subject LIKE ?', '%boston%').count
     @chevron = Alert.where('subject LIKE ?', '%chevron%').count
@@ -26,45 +26,6 @@ class AlertsController < ApplicationController
   # GET /alerts/1
   # GET /alerts/1.json
   def show
-  end
-
-  # GET /alerts/new
-  def new
-    @alert = Alert.new
-  end
-
-  # GET /alerts/1/edit
-  def edit
-  end
-
-  # POST /alerts
-  # POST /alerts.json
-  def create
-    @alert = Alert.new(alert_params)
-
-    respond_to do |format|
-      if @alert.save
-        format.html { redirect_to @alert, notice: 'Alert was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @alert }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @alert.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /alerts/1
-  # PATCH/PUT /alerts/1.json
-  def update
-    respond_to do |format|
-      if @alert.update(alert_params)
-        format.html { redirect_to @alert, notice: 'Alert was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @alert.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /alerts/1

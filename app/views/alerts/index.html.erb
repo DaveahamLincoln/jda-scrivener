@@ -1,4 +1,4 @@
-<h1>Listing alerts</h1>
+<h1>Alerts</h1>
 <%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
  
 <center><h2>Alerts by Customer</h2></center> 
@@ -38,7 +38,7 @@ Popeyes: <%=@pop%><br />
 McDonalds: <%=@mcd%><br /><br />
 -->
 
-
+<center><h2>Last 25 Alerts</h2></center> 
 <table>
   <thead>
     <tr>
@@ -65,5 +65,3 @@ McDonalds: <%=@mcd%><br /><br />
 </table>
 
 <br>
-
-<%= link_to 'New Alert', new_alert_path %>
