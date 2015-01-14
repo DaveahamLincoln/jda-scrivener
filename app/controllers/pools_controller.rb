@@ -17,10 +17,6 @@ class PoolsController < ApplicationController
     @pool = Pool.new
   end
 
-  # GET /pools/1/edit
-  def edit
-  end
-
   # POST /pools
   # POST /pools.json
   def create
