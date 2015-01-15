@@ -20,8 +20,7 @@
     <%= f.text_field :auth_token %>
   </div>
   <div class="field">
-    <%= f.label :flood_id %><br>
-    <%= f.number_field :flood_id %>
+    <%= f.collection_select(:flood_id, Flood.all, :id, :name)%>
   </div>
   <div class="actions">
     <%= f.submit %>

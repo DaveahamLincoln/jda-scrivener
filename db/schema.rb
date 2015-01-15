@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211223100) do
+ActiveRecord::Schema.define(version: 20150114221130) do
 
   create_table "alerts", force: true do |t|
     t.string   "source"
@@ -48,6 +48,15 @@ ActiveRecord::Schema.define(version: 20141211223100) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "flood_id"
+  end
+
+  create_table "wfm_alerts", force: true do |t|
+    t.string   "source"
+    t.string   "subject"
+    t.integer  "pool_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.datetime "received"
   end
 
 end

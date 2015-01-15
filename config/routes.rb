@@ -1,4 +1,6 @@
 Scrivener::Application.routes.draw do
+  resources :wfm_alerts
+
   resources :sources
 
   resources :pools

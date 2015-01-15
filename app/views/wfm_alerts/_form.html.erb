@@ -1,0 +1,29 @@
+<%= form_for(@wfm_alert) do |f| %>
+  <% if @wfm_alert.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wfm_alert.errors.count, "error") %> prohibited this wfm_alert from being saved:</h2>
+
+      <ul>
+      <% @wfm_alert.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :from %><br>
+    <%= f.text_field :from %>
+  </div>
+  <div class="field">
+    <%= f.label :subject %><br>
+    <%= f.text_field :subject %>
+  </div>
+  <div class="field">
+    <%= f.label :pool_id %><br>
+    <%= f.number_field :pool_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
