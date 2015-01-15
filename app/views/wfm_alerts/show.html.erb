@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>From:</strong>
+  <%= @wfm_alert.from %>
+</p>
+
+<p>
+  <strong>Subject:</strong>
+  <%= @wfm_alert.subject %>
+</p>
+
+<p>
+  <strong>Pool:</strong>
+  <%= @wfm_alert.pool_id %>
+</p>
+
+<%= link_to 'Edit', edit_wfm_alert_path(@wfm_alert) %> |
+<%= link_to 'Back', wfm_alerts_path %>

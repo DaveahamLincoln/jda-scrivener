@@ -1,0 +1,29 @@
+<h1>Listing wfm_alerts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>From</th>
+      <th>Subject</th>
+      <th>Pool</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wfm_alerts.each do |wfm_alert| %>
+      <tr>
+        <td><%= wfm_alert.from %></td>
+        <td><%= wfm_alert.subject %></td>
+        <td><%= wfm_alert.pool_id %></td>
+        <td><%= link_to 'Show', wfm_alert %></td>
+        <td><%= link_to 'Edit', edit_wfm_alert_path(wfm_alert) %></td>
+        <td><%= link_to 'Destroy', wfm_alert, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wfm alert', new_wfm_alert_path %>
