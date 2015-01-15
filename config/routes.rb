@@ -1,4 +1,5 @@
 Scrivener::Application.routes.draw do
+  
   resources :wfm_alerts
 
   resources :sources
@@ -10,8 +11,7 @@ Scrivener::Application.routes.draw do
       post 'source'
     end
   end
-
-
+  
   resources :alerts
   
   require 'resque/server'
@@ -22,10 +22,10 @@ Scrivener::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'index#index'
 
   # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'index/download_pdf' => 'index#download_pdf'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
