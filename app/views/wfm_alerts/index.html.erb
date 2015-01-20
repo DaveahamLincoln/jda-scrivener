@@ -1,3 +1,15 @@
+<h1>Alerts</h1>
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+ 
+<center><h2>Alerts by Customer</h2></center> 
+
+<%= pie_chart({"Ann Taylor" => @ann, "Giant Eagle" => @giant, "Pilot" => @pilot, "Big Y" => @big,
+  "Mariott" => @mariott, "PTC" => @ptc, "Two Farms" => @farms, "Office Max" => @office, "DuaneReade" => @duane,
+  "Walmart" => @walmart, "Atlas" => @atlas, "FiestaMart" => @fiesta, "TMTGPI" => @tmtgpi, "Bob Evans" => @evans,
+  "Schnucks" => @sch
+}, height: "500px" ) %>
+
+
 <h1>Listing wfm_alerts</h1>
 
 <table>
