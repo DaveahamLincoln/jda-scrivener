@@ -21,6 +21,7 @@ class AlertsController < ApplicationController
     @rds = Alert.where('subject LIKE ?', '%rds%').count
     @pop = Alert.where('subject LIKE ?', '%popeye%').count
     @mcd = Alert.where('subject LIKE ?', '%mcd%').count
+    @sch = Alert.where('subject LIKE ?', '%Schnucks%').count
   end
 
   # GET /alerts/1
