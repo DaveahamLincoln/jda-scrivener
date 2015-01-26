@@ -1,3 +1,6 @@
+#This file controls the flow of data to and between the various /floods/ routes.  For instance, the
+#  index action handles the information available to the /floods/index view.
+
 class FloodsController < ApplicationController
   before_action :set_flood, only: [:show, :edit, :update, :destroy]
 
@@ -10,6 +13,7 @@ class FloodsController < ApplicationController
   # GET /floods/1
   # GET /floods/1.json
   def show
+    #Shows a list of sources pulled from the source_od on-demand job (workers/source_od).
     @sources = @flood.sources.all
   end
 

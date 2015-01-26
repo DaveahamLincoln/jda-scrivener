@@ -1,3 +1,9 @@
+#This file controls the flow of data to and between the various /wfm_alerts/ routes.  For instance, the
+#  index action handles the information available to the /wfm_alerts/index view.
+#
+#Since we don't want users to be able to create or change wfm_alerts, there are no Create, New, Edit, 
+#  or Update actions.
+
 class WfmAlertsController < ApplicationController
   before_action :set_wfm_alert, only: [:show, :edit, :update, :destroy]
 
@@ -33,22 +39,6 @@ class WfmAlertsController < ApplicationController
 
   # GET /wfm_alerts/1/edit
   def edit
-  end
-
-  # POST /wfm_alerts
-  # POST /wfm_alerts.json
-  def create
-    @wfm_alert = WfmAlert.new(wfm_alert_params)
-
-    respond_to do |format|
-      if @wfm_alert.save
-        format.html { redirect_to @wfm_alert, notice: 'Wfm alert was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @wfm_alert }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @wfm_alert.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # PATCH/PUT /wfm_alerts/1

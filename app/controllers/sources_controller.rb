@@ -1,3 +1,9 @@
+#This file controls the flow of data to and between the various /sources/ routes.  For instance, the
+#  index action handles the information available to the /sources/index view.
+#
+#Since we don't want users to be able to create or change wfm_alerts, there are no Create, New, Edit, 
+#  or Update actions.
+
 class SourcesController < ApplicationController
   before_action :set_source, only: [:show, :edit, :update, :destroy]
 
@@ -11,55 +17,6 @@ class SourcesController < ApplicationController
   # GET /sources/1.json
   def show
     @alert_count = Alert.where(from: Source.find(params[:id]).name).count
-  end
-
-  # GET /sources/new
-  def new
-    @source = Source.new
-  end
-
-  # GET /sources/1/edit
-  def edit
-  end
-
-  # POST /sources
-  # POST /sources.json
-  def create
-    @source = Source.new(source_params)
-
-    respond_to do |format|
-      if @source.save
-        format.html { redirect_to @source, notice: 'Source was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @source }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @source.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /sources/1
-  # PATCH/PUT /sources/1.json
-  def update
-    respond_to do |format|
-      if @source.update(source_params)
-        format.html { redirect_to @source, notice: 'Source was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @source.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /sources/1
-  # DELETE /sources/1.json
-  def destroy
-    @source.destroy
-    respond_to do |format|
-      format.html { redirect_to sources_url }
-      format.json { head :no_content }
-    end
   end
 
   private

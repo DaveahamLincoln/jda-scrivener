@@ -1,28 +1,64 @@
 == README
+10.0.19.172:3001 is where scrivener lives- you cn download the latest db from the link there
+/alerts is eso's frontend
+/wfm_alerts is wfmr's frontend
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+to add a department
 
-Things you may want to cover:
+create a gmail account with the form jda.departmentname.scrivener@gmail.com
 
-* Ruby version
+ssh into 10.0.19.172
+-u danearing
+-p skrivener01
 
-* System dependencies
+stop the server by running
 
-* Configuration
+>screen ls
 
-* Database creation
+Should show a few numbers.  Try each one with 
 
-* Database initialization
+>screen -r ####
 
-* How to run the test suite
+until you get one with a bunch of colored text that looks like a server log
 
-* Services (job queues, cache servers, search engines, etc.)
+then press Ctl + C
+then run
 
-* Deployment instructions
+>rails g scaffold DepartmentName_Alert source:varchar subject:varchar pool_id:integer received:datetime
 
-* ...
+then
 
+>bundle exec rake db:migrate
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+then modify the following line in /Procfile to have COUNT (number of Floods + 1):
+  worker: bundle exec rake resque:workers QUEUE='*' COUNT=3
+
+then
+
+>foreman start
+
+then go to 10.0.19.172:3001/floods/new
+Name -> DepartmentName
+Bind -> DepartmentNameAlert
+Create
+
+then go to 10.0.19.172:3001/pools/new
+
+Name -> the jda.departmentname.scrivener part of the gmail username 
+Auth token -> password for the gmail
+Select the Flood name that you created above from the dropdown
+Create
+
+Now the frontend (at 10.0.19.172:3001/departmentname_alerts) will begin populating with data as the jobs spin.
+
+Email polls happen every 5 minutes
+Database updates occur every 30 minutes
+
+It's really not pretty, but it works.
+
+If you want to modify the frontends, make your changes to the app/views/DepartmentNameAlerts/index.html.erb file
+If you want to modify the data that gets to the frontends (new queries, etc.), make changes to the app/controllers/DocumentNameAlertsController.rb file
+
+Run
+<tt>bundle exec rake doc:app<tt>
+when you make changes to this README.

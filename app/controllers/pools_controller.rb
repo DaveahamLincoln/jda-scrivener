@@ -1,3 +1,6 @@
+#This file controls the flow of data to and between the various /pools/ routes.  For instance, the
+#  index action handles the information available to the /pools/index view.
+
 class PoolsController < ApplicationController
   before_action :set_pool, only: [:show, :edit, :update, :destroy]
 

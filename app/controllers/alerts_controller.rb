@@ -1,3 +1,8 @@
+#This file controls the flow of data to and between the various /alerts/ routes.  For instance, the
+#  index action handles the information available to the /alerts/index view.
+#
+#Since we don't want users to be able to create or change wfm_alerts, there are no Create, New, Edit, #  or Update actions.
+
 class AlertsController < ApplicationController
   before_action :set_alert, only: [:show, :edit, :update, :destroy]
 
@@ -5,6 +10,8 @@ class AlertsController < ApplicationController
   # GET /alerts.json
   def index
     @alerts = Alert.limit(25)
+    #Parses the set of all alerts and assigns each group to a variable which we can then use for
+    #  reporting in the view.
     @dunkin = Alert.where('subject LIKE ?', '%adqsr%').count
     @boston = Alert.where('subject LIKE ?', '%boston%').count
     @chevron = Alert.where('subject LIKE ?', '%chevron%').count
